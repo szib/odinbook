@@ -1,24 +1,22 @@
-# README
+# OdinBook
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The [final project](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project?ref=lnav) of the [OdinProject](https://www.theodinproject.com/courses/ruby-on-rails) Ruby on Rails curriculum.
 
-Things you may want to cover:
+## Project summary
+Build a basic Facebook clone. Users can create a basic profile with a photo, send/accept friend requests, like and comment each others posts.
 
-* Ruby version
+## Setup
+- Ruby 2.5.1
+- Rails 5.2.0
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Gems
+```
+gem 'bootstrap' # Bootstrap 4
+gem 'jquery-rails'
+gem 'material_icons'
+gem 'time_difference'
+gem 'will_paginate'
+gem 'figaro'
+gem 'devise'
+gem 'omniauth-facebook'
+```
