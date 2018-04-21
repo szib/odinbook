@@ -21,6 +21,23 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <%= f.fields_for :profile do |profile_fields| %>
+    <div class="field">
+      <%= profile_fields.label :first_name %><br />
+      <%= profile_fields.text_field :first_name, autofocus: true, autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <%= profile_fields.label :last_name %><br />
+      <%= profile_fields.text_field :last_name, autofocus: true, autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <%= profile_fields.label :location %><br />
+      <%= profile_fields.text_field :location, autofocus: true, autocomplete: "off" %>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
