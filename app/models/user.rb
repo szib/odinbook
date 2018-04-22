@@ -13,4 +13,12 @@ class User < ApplicationRecord
   validates_presence_of :profile
 
   accepts_nested_attributes_for :profile
+
+  def friend_of?(frd)
+    friends.include? frd
+  end
+
+  def not_friend_of?(frd)
+    !friend_of? frd
+  end
 end
