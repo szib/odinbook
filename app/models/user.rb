@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy, autosave: true
 
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
+
   validates_associated :profile
   validates_presence_of :profile
 
