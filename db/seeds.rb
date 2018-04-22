@@ -20,12 +20,30 @@ end
 puts " Seeding starts at #{Time.now} ".center(79,'#')
 
 add_user(
-  email: "usagi@yojimbo.jp",
+  email: "miyamoto@manga-world.jp",
   password: 'foobar',
-  first_name: 'Usagi',
-  last_name: 'Yojimbo',
+  first_name: 'Miyamoto',
+  last_name: 'Usagi',
   location: 'Japan'
 )
+
+add_user(
+  email: "tomoe@manga-world.jp",
+  password: 'foobar',
+  first_name: 'Ame',
+  last_name: 'Tomoe',
+  location: 'Japan'
+)
+
+add_user(
+  email: "gennosuke@manga-world.jp",
+  password: 'foobar',
+  first_name: 'Gennosuke',
+  last_name: 'Murakami',
+  location: 'Japan'
+)
+Friendship.create(user: User.first, friend: User.find(2))
+Friendship.create(user: User.first, friend: User.find(3))
 
 10.times do
   add_user(

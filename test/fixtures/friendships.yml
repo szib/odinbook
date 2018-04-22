@@ -1,9 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# one:
-#   user: one
-#   friend: one
-#
-# two:
-#   user: two
-#   friend: two
+friendship1:
+  user: miyamoto
+  friend: tomoe
+
+friendship2:
+  user: tomoe
+  friend: miyamoto
+
+friendship3:
+  user: miyamoto
+  friend: gennosuke
+
+friendship4:
+  user: gennosuke
+  friend: miyamoto
