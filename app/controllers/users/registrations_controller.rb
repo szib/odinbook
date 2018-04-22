@@ -2,7 +2,7 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   def new
@@ -22,9 +22,28 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    params = devise_parameter_sanitizer.sanitize(:account_update)
+
+    @user = User.find(current_user.id)
+    if need_password?
+      successfully_updated = @user.update_with_password(params)
+    else
+      params.delete('current_password')
+      params.delete('password')
+      params.delete('password_confirmation')
+      successfully_updated = @user.update_without_password(params)
+    end
+
+    if successfully_updated
+      set_flash_message :notice, :updated
+      bypass_sign_in @user
+      redirect_to static_pages_home_path
+    else
+      render 'edit'
+    end
+
+  end
 
   # DELETE /resource
   # def destroy
@@ -51,9 +70,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update) { |u|
+      u.permit(:email, :password, :password_confirmation, :current_password,
+        profile_attributes: [ :first_name, :last_name, :location, :id ] )
+      }
+    end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
@@ -64,4 +86,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+
+  def need_password?
+    @user.email != params[:user][:email] || params[:user][:password].present?
+  end
 end
