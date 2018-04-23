@@ -1,11 +1,11 @@
-<h1>Users#index</h1>
+<div class="d-flex justify-content-center pt-3">
+  <h1>Find friends</h1>
+</div>
 
-<% @users.each do |user| %>
-  <ul>
-    <li>
-      <%= link_to user.profile.full_name, user %>
-    </li>
-    <li><%= user.email %></li>
-    <li><%= user.profile.location %></li>
-  </ul>
-<% end %>
+<div class="d-flex flex-wrap">
+
+  <% @users.each do |user| %>
+    <%= render 'shared/friend_card', user: user %>
+  <% end %>
+
+</div>
