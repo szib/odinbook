@@ -45,6 +45,8 @@ add_user(
 Friendship.create(user: User.first, friend: User.find(2))
 Friendship.create(user: User.first, friend: User.find(3))
 
+FriendRequest.create(user: User.second, friend: User.third)
+
 10.times do
   add_user(
     email: Faker::Internet.email,
@@ -54,5 +56,10 @@ Friendship.create(user: User.first, friend: User.find(3))
     location: "#{Faker::Address.city}, #{Faker::Address.country}"
   )
 end
+
+FriendRequest.create(user: User.find(5), friend: User.first)
+FriendRequest.create(user: User.find(6), friend: User.first)
+FriendRequest.create(user: User.find(7), friend: User.first)
+FriendRequest.create(user: User.first, friend: User.find(8))
 
 puts " Seeding ends at #{Time.now} ".center(79,'#')
