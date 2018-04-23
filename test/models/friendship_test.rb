@@ -6,6 +6,7 @@ class FriendshipTest < ActiveSupport::TestCase
     @miyamoto = users(:miyamoto)
     @tomoe = users(:tomoe)
     @gennosuke = users(:gennosuke)
+    @nakamura = users(:nakamura)
   end
 
   test 'should create inverse friendship' do
@@ -29,13 +30,19 @@ class FriendshipTest < ActiveSupport::TestCase
     assert @tomoe.friends.include? @miyamoto
   end
 
-  test 'adding friend should be idempotent' do
+  test 'should not add a friend twice' do
     assert_not @tomoe.friends.include? @gennosuke
     @tomoe.friends << @gennosuke
     assert @tomoe.friends.include? @gennosuke
     # TODO: assert_no_difference ???
     assert_raises {
         @tomoe.friends << @gennosuke
+    }
+  end
+
+  test 'should not add self as a friend' do
+    assert_raises {
+      @nakamura.friends << @nakamura
     }
   end
 
