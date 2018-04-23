@@ -1,12 +1,8 @@
 class Friendship < ApplicationRecord
+  include Befriendable
+
   after_create :create_inverse_friendship
   after_destroy :destroy_inverse_friendship
-
-  belongs_to :user
-  belongs_to :friend, class_name: 'User'
-
-  validates_presence_of :user, :friend
-  validates_uniqueness_of :user, scope: :friend
 
   private
 

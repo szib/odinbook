@@ -9,6 +9,16 @@ class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
 
+  has_many :sent_friend_requests, dependent: :destroy,
+                                  class_name: 'FriendRequest',
+                                  foreign_key: :user_id
+  has_many :requested_friends, through: :sent_friend_requests, source: :friend
+
+  has_many :received_friend_requests, dependent: :destroy,
+                                      class_name: 'FriendRequest',
+                                      foreign_key: :friend_id
+  has_many :requesting_friends, through: :received_friend_requests, source: :user
+
   validates_associated :profile
   validates_presence_of :profile
 

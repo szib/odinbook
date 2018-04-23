@@ -6,8 +6,11 @@ class Profile < ApplicationRecord
   validates :first_name, :last_name, length: { minimum: 2, maximum: 50 }
 
   def capitalize_names
-    self.first_name.capitalize!
-    self.last_name.capitalize!
-    self.location.capitalize!
+    first_name.capitalize!
+    last_name.capitalize!
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 end
