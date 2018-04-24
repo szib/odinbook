@@ -34,6 +34,10 @@ class User < ApplicationRecord
     !friend_of? frd
   end
 
+  def number_of_friend_requests
+    requesting_friends.count
+  end
+
   def has_pending_friend_request?(frd)
     requested_friends.include?(frd) || requesting_friends.include?(frd)
   end
