@@ -24,6 +24,8 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :profile
 
+  scope :possible_friends_for, -> (id) { where('id <> ?', id) }
+
   def friend_of?(frd)
     friends.include? frd
   end
