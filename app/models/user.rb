@@ -20,6 +20,7 @@ class User < ApplicationRecord
   has_many :requesting_friends, through: :received_friend_requests, source: :user
 
   has_many :posts, foreign_key: :author_id
+  has_many :comments, foreign_key: :author_id
 
   validates_associated :profile
   validates_presence_of :profile
