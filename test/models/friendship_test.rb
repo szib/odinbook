@@ -1,48 +1,45 @@
 require 'test_helper'
 
 class FriendshipTest < ActiveSupport::TestCase
+  include FactoryBot::Syntax::Methods
 
   def setup
-    @miyamoto = users(:miyamoto)
-    @tomoe = users(:tomoe)
-    @gennosuke = users(:gennosuke)
-    @nakamura = users(:nakamura)
+    @user = create(:user)
+    @friend = create(:user)
+    @new_friend = create(:user)
+  end
+
+  def create_and_assert_new_friendship(user = @user, friend = @new_friend)
+    create(:friendship, user: user, friend: friend)
+    assert user.friend_of? friend
+    assert friend.friend_of? user
   end
 
   test 'should create inverse friendship' do
-    assert_not @gennosuke.friends.include? @tomoe
-    assert_not @tomoe.friends.include? @gennosuke
-    assert @tomoe.friends.include? @miyamoto
-    @tomoe.friends << @gennosuke
-    assert @gennosuke.friends.include? @tomoe
-    assert @tomoe.friends.include? @gennosuke
-    assert @tomoe.friends.include? @miyamoto
+    assert @user.not_friend_of? @new_friend
+    assert @friend.not_friend_of? @new_friend
+    assert @new_friend.not_friend_of? @user
+
+    create_and_assert_new_friendship
   end
 
   test 'should destroy inverse friendship' do
-    @tomoe.friends << @gennosuke
-    assert @tomoe.friends.include? @miyamoto
-    assert @gennosuke.friends.include? @tomoe
-    assert @tomoe.friends.include? @gennosuke
-    @tomoe.friends.destroy @gennosuke
-    assert_not @gennosuke.friends.include? @tomoe
-    assert_not @tomoe.friends.include? @gennosuke
-    assert @tomoe.friends.include? @miyamoto
+    create_and_assert_new_friendship
+    @user.friends.destroy @new_friend
+    assert @user.not_friend_of? @new_friend
+    assert @new_friend.not_friend_of? @user
   end
 
   test 'should not add a friend twice' do
-    assert_not @tomoe.friends.include? @gennosuke
-    @tomoe.friends << @gennosuke
-    assert @tomoe.friends.include? @gennosuke
-    # TODO: assert_no_difference ???
+    create_and_assert_new_friendship
     assert_raises {
-        @tomoe.friends << @gennosuke
+      create(:friendship, user: @user, friend: @new_friend)
     }
   end
 
   test 'should not add self as a friend' do
     assert_raises {
-      @nakamura.friends << @nakamura
+      create(:friendship, user: @user, friend: @user)
     }
   end
 

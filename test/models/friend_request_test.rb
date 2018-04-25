@@ -1,59 +1,59 @@
 require 'test_helper'
 
 class FriendRequestTest < ActiveSupport::TestCase
+  include FactoryBot::Syntax::Methods
 
   def setup
-    @miyamoto = users(:miyamoto)
-    @tomoe = users(:tomoe)
-    @gennosuke = users(:gennosuke)
-    @nakamura = users(:nakamura)
+    @user = create(:user)
+    @friend = create(:user)
+    @new_friend = create(:user)
   end
 
   test 'should add a friend request' do
     assert_difference 'FriendRequest.count', 1 do
-      @gennosuke.requested_friends << @nakamura
+      @user.requested_friends << @new_friend
     end
   end
 
   test 'should sent request appear in requesting friends too' do
-    assert @nakamura.requesting_friends.exclude? @gennosuke
-    assert @gennosuke.requested_friends.exclude? @nakamura
-    @gennosuke.requested_friends << @nakamura
-    assert @nakamura.requesting_friends.include? @gennosuke
-    assert @gennosuke.requested_friends.include? @nakamura
+    assert @user.requesting_friends.exclude? @new_friend
+    assert @new_friend.requested_friends.exclude? @user
+    @user.requested_friends << @new_friend
+    assert @new_friend.requesting_friends.include? @user
+    assert @user.requested_friends.include? @new_friend
   end
 
   test 'should not add friend request again' do
-    @gennosuke.requested_friends << @nakamura
+    @user.requested_friends << @new_friend
     assert_raise ActiveRecord::RecordInvalid do
-      @gennosuke.requested_friends << @nakamura
+      @user.requested_friends << @new_friend
     end
   end
 
   test 'should not add friend request if friend already has sent a request' do
-    @nakamura.requesting_friends << @gennosuke
+    @user.requesting_friends << @new_friend
     assert_raise  ActiveRecord::RecordInvalid do
-      @gennosuke.requested_friends << @nakamura
+      @new_friend.requested_friends << @user
     end
   end
 
   test 'should deleting sender user remove request' do
-    @nakamura.requested_friends << @gennosuke
-    assert_difference 'FriendRequest.count', -3 do # @nakamura has 3 pending FR
-      @nakamura.destroy
+    @user.requested_friends << @new_friend
+    assert_difference 'FriendRequest.count', -1 do
+      @user.destroy
     end
   end
 
   test 'should deleting requested user remove request' do
-    @nakamura.requested_friends << @gennosuke
+    @user.requested_friends << @new_friend
     assert_difference 'FriendRequest.count', -1 do
-      @gennosuke.destroy
+      @new_friend.destroy
     end
   end
 
   test 'should not be able to send request to self' do
     assert_raise do
-      @nakamura.requested_friends << @nakamura
+      @user.requested_friends << @user
     end
   end
 

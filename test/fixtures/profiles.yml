@@ -1,25 +1,25 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-miyamoto:
-  first_name: Usagi
-  last_name: Miyamoto
-  location: Japan
-  user: miyamoto
-
-tomoe:
-  first_name: Ame
-  last_name: Tomoe
-  location: Japan
-  user: tomoe
-
-gennosuke:
-  first_name: Gennosuke
-  last_name: Murakami
-  location: Japan
-  user: gennosuke
-
-nakamura:
-  first_name: Koji
-  last_name: Nakamura
-  location: Japan
-  user: nakamura
+# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+#
+# miyamoto:
+#   first_name: Usagi
+#   last_name: Miyamoto
+#   location: Japan
+#   user: miyamoto
+#
+# tomoe:
+#   first_name: Ame
+#   last_name: Tomoe
+#   location: Japan
+#   user: tomoe
+#
+# gennosuke:
+#   first_name: Gennosuke
+#   last_name: Murakami
+#   location: Japan
+#   user: gennosuke
+#
+# nakamura:
+#   first_name: Koji
+#   last_name: Nakamura
+#   location: Japan
+#   user: nakamura
