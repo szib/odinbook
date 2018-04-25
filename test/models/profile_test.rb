@@ -1,11 +1,10 @@
 require 'test_helper'
 
 class ProfileTest < ActiveSupport::TestCase
+  include FactoryBot::Syntax::Methods
 
   def setup
-    @user = User.new(email: "user@example.com", password: "foobar")
-    @user.build_profile(first_name: 'John', last_name: 'Doe',
-      location: 'United Kingdom')
+    @user = build(:user)
   end
 
   test 'profile should be valid' do
