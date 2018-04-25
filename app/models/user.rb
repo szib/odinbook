@@ -19,8 +19,9 @@ class User < ApplicationRecord
                                       foreign_key: :friend_id
   has_many :requesting_friends, through: :received_friend_requests, source: :user
 
-  has_many :posts, foreign_key: :author_id
-  has_many :comments, foreign_key: :author_id
+  has_many :posts, foreign_key: :author_id, dependent: :destroy
+  has_many :comments, foreign_key: :author_id, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   validates_associated :profile
   validates_presence_of :profile
