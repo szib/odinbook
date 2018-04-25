@@ -20,12 +20,32 @@ end
 puts " Seeding starts at #{Time.now} ".center(79,'#')
 
 add_user(
-  email: "usagi@yojimbo.jp",
+  email: "miyamoto@manga-world.jp",
   password: 'foobar',
-  first_name: 'Usagi',
-  last_name: 'Yojimbo',
+  first_name: 'Miyamoto',
+  last_name: 'Usagi',
   location: 'Japan'
 )
+
+add_user(
+  email: "tomoe@manga-world.jp",
+  password: 'foobar',
+  first_name: 'Ame',
+  last_name: 'Tomoe',
+  location: 'Japan'
+)
+
+add_user(
+  email: "gennosuke@manga-world.jp",
+  password: 'foobar',
+  first_name: 'Gennosuke',
+  last_name: 'Murakami',
+  location: 'Japan'
+)
+Friendship.create(user: User.first, friend: User.find(2))
+Friendship.create(user: User.first, friend: User.find(3))
+
+FriendRequest.create(user: User.second, friend: User.third)
 
 10.times do
   add_user(
@@ -36,5 +56,10 @@ add_user(
     location: "#{Faker::Address.city}, #{Faker::Address.country}"
   )
 end
+
+FriendRequest.create(user: User.find(5), friend: User.first)
+FriendRequest.create(user: User.find(6), friend: User.first)
+FriendRequest.create(user: User.find(7), friend: User.first)
+FriendRequest.create(user: User.first, friend: User.find(8))
 
 puts " Seeding ends at #{Time.now} ".center(79,'#')

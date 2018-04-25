@@ -31,11 +31,9 @@ class ProfileTest < ActiveSupport::TestCase
     str = 'string'
     @user.profile.first_name = str
     @user.profile.last_name = str
-    @user.profile.location = str
     @user.profile.send(:capitalize_names)
     assert_equal @user.profile.first_name, str.capitalize
     assert_equal @user.profile.last_name, str.capitalize
-    assert_equal @user.profile.location, str.capitalize
   end
 
   test 'should be invalid with short or long first name' do
