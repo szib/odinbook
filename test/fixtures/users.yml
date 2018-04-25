@@ -1,21 +1,21 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
+# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 #
-miyamoto:
-  email: miyamoto@manga-world.jp
-  encrypted_password: <%= User.new.send(:password_digest, 'foobar') %>
-
-tomoe:
-  email: tomoe@manga-world.jp
-  encrypted_password: <%= User.new.send(:password_digest, 'foobar') %>
-
-gennosuke:
-  email: gennosuke@manga-world.jp
-  encrypted_password: <%= User.new.send(:password_digest, 'foobar') %>
-
-nakamura:
-  email: nakamura@manga-world.jp
-  encrypted_password: <%= User.new.send(:password_digest, 'foobar') %>
+# # This model initially had no columns defined. If you add columns to the
+# # model remove the '{}' from the fixture names and add the columns immediately
+# # below each fixture, per the syntax in the comments below
+# #
+# miyamoto:
+#   email: miyamoto@manga-world.jp
+#   encrypted_password: <%= User.new.send(:password_digest, 'foobar') %>
+#
+# tomoe:
+#   email: tomoe@manga-world.jp
+#   encrypted_password: <%= User.new.send(:password_digest, 'foobar') %>
+#
+# gennosuke:
+#   email: gennosuke@manga-world.jp
+#   encrypted_password: <%= User.new.send(:password_digest, 'foobar') %>
+#
+# nakamura:
+#   email: nakamura@manga-world.jp
+#   encrypted_password: <%= User.new.send(:password_digest, 'foobar') %>
