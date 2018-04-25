@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :friend_requests, only: [ :update, :destroy]
   post 'friend_requests/:id', to: 'friend_requests#create'
 
+  resources :posts
+
   get 'static_pages/home'
   get 'static_pages/help'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
