@@ -42,11 +42,11 @@ class User < ApplicationRecord
     requested_friends.include?(frd) || requesting_friends.include?(frd)
   end
 
-  def has_incoming_friend_request_from(frd)
+  def has_incoming_friend_request_from?(frd)
     requesting_friends.include?(frd)
   end
 
-  def has_sent_friend_request_to(frd)
+  def has_sent_friend_request_to?(frd)
     requested_friends.include?(frd)
   end
 end

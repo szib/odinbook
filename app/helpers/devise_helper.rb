@@ -20,7 +20,7 @@ module DeviseHelper
 
   # Converts devise message type to bootstrap style
   def bootstrap_style_for(devise_msg_type = '')
-    return ' alert-warning' if devise_msg_type = 'notice'
+    return ' alert-warning' if devise_msg_type == 'notice'
     ' alert-error'
   end
 end
