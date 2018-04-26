@@ -109,6 +109,9 @@ GEM
     figaro (1.1.1)
       thor (~> 0.14)
     formatador (0.2.5)
+    fuubar (2.3.1)
+      rspec-core (~> 3.0)
+      ruby-progressbar (~> 1.4)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     guard (2.14.2)
@@ -322,6 +325,7 @@ DEPENDENCIES
   factory_bot_rails (~> 4.0)
   faker
   figaro
+  fuubar
   guard-rspec
   jbuilder (~> 2.5)
   jquery-rails
