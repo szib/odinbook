@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  include FactoryBot::Syntax::Methods
 
   subject(:user) { build(:user) }
   let(:friend) { create(:user) }

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Profile, type: :model do
-  include FactoryBot::Syntax::Methods
 
   subject(:profile_without_user) { build(:profile) }
   subject(:profile_with_user) { build(:user).profile }

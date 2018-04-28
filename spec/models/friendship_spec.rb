@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Friendship, type: :model do
-  include FactoryBot::Syntax::Methods
 
   let(:user) { create(:user) }
   let(:friend) { create(:user) }

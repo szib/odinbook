@@ -9,6 +9,9 @@ require 'rspec/rails'
 # Devise/Warden helpers
 require 'support/devise.rb'
 
+# FactoryBot helpers
+require 'support/factorybot.rb'
+
 require 'capybara/rspec'
 # Add additional requires below this line. Rails is not loaded until this point!
 
