@@ -1,9 +1,0 @@
-# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-#
-# friend_request1:
-#   user: tomoe
-#   friend: nakamura
-#
-# friend_request2:
-#   user: nakamura
-#   friend: miyamoto
