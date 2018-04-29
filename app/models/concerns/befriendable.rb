@@ -7,7 +7,6 @@ module Befriendable
 
     validate :not_self
     validates_presence_of :user, :friend
-    validates_uniqueness_of :user, scope: :friend
   end
 
   def not_self

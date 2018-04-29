@@ -41,6 +41,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'faker'
   gem "factory_bot_rails", "~> 4.0"
+  gem 'rspec-rails'
+  gem 'fuubar'
 end
 
 group :development do
@@ -51,6 +53,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'awesome_rails_console'
+  gem 'guard-rspec', require: false
 end
 
 group :test do
@@ -59,10 +62,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
-  # gem 'rails-controller-testing', '1.0.2'
-  gem 'minitest-reporters',       '1.1.14'
-  # gem 'guard',                    '2.14.1'
-  # gem 'guard-minitest',           '2.4.6'
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

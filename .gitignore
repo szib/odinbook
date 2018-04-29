@@ -27,3 +27,7 @@
 
 # Notes
 /private
+
+# SimpleCov
+coverage
+.DS_Store
