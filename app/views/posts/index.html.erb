@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<div class="d-flex justify-content-center">
+  <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
+</div>
+
+<% @posts.each do |post| %>
+  <%= render 'shared/post', post: post %>
+<% end %>

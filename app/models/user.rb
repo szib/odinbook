@@ -19,6 +19,10 @@ class User < ApplicationRecord
                                       foreign_key: :friend_id
   has_many :requesting_friends, through: :received_friend_requests, source: :user
 
+  has_many :posts, foreign_key: :author_id, dependent: :destroy
+  has_many :comments, foreign_key: :author_id, dependent: :destroy
+  has_many :likes, dependent: :destroy
+
   validates_associated :profile
   validates_presence_of :profile
 
@@ -28,6 +32,14 @@ class User < ApplicationRecord
 
   def friend_of?(frd)
     friends.include? frd
+  end
+
+  def timeline_user_ids
+    friends.map { |f| f.id } << id
+  end
+
+  def timeline
+    Post.where("author_id in (?)", timeline_user_ids)
   end
 
   def not_friend_of?(frd)

@@ -3,6 +3,10 @@ require 'support/shared_controller_context'
 
 RSpec.describe StaticPagesController, type: :controller do
 
+  # describe '#home' do
+  #   it_behaves_like 'a not restricted path', :home
+  # end
+
   let(:user) { create(:user) }
 
   context 'without successfully authenticated user' do
