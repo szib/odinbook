@@ -34,6 +34,14 @@ class User < ApplicationRecord
     friends.include? frd
   end
 
+  def timeline_user_ids
+    friends.map { |f| f.id } << id
+  end
+
+  def timeline
+    Post.where("author_id in (?)", timeline_user_ids)
+  end
+
   def not_friend_of?(frd)
     !friend_of? frd
   end

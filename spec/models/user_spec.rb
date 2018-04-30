@@ -35,6 +35,18 @@ RSpec.describe User, type: :model do
     expect(dup_user).to_not be_valid
   end
 
+  it 'should return timeline_user_ids' do
+    create(:friendship, user: user, friend: friend)
+    list = create_list(:friendship, 5, user: user)
+    expect(user.timeline_user_ids).to include user.id
+    expect(user.timeline_user_ids).to include friend.id
+    expect(user.timeline_user_ids.length).to be 7
+  end
+
+  it 'should return timeline posts' do
+    #TODO write test
+  end
+
   it 'should return number of incoming friend requests' do
     4.times { create(:friend_request, friend: user) }
     expect(user.number_of_friend_requests).to be 4
