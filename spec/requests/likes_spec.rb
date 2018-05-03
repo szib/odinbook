@@ -1,10 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe "Likes", type: :request do
-  describe "GET /likes" do
-    it "works! (now write some real specs)" do
-      get likes_path
-      expect(response).to have_http_status(200)
+  let(:a_post) { create(:post) }
+
+  describe "POST /posts/:post_id/like" do
+    it "works" do
+      post post_like_path(a_post.id)
+      expect(response).to have_http_status(302)
+    end
+  end
+  describe "DELETE /posts/:post_id/like" do
+    it "works" do
+      create(:like, likeable: a_post)
+      delete post_like_path(a_post.id)
+      expect(response).to have_http_status(302)
     end
   end
 end
