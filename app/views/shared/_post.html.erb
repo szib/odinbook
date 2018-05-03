@@ -12,13 +12,19 @@
   <div class="d-flex px-3 mt-2 justify-content-center text-justify">
     <%= post.content %>
   </div>
+  <% if post.likes.exists? %>
   <div class="d-flex px-3 mt-2 bg-secondary text-light justify-content-start text-justify">
-    Liked by: ....
+    Likes: <%= post.likes.count %>
   </div>
+  <% end %>
 
   <div class="d-flex pt-1 px-1 flex-row justify-content-between">
     <div class="p-0 px-1">
-      <%= link_to 'Like', '#', class: 'btn btn-sm btn-primary' %>
+      <% if post.likes.pluck(:user_id).include?(current_user.id) %>
+        <%= link_to 'Unlike', post_like_path(post.id), method: :delete, class: 'btn btn-sm btn-primary' %>
+      <% else %>
+        <%= link_to 'Like', post_like_path(post.id), method: :post, class: 'btn btn-sm btn-primary' %>
+      <% end %>
     </div>
     <% if post.author == current_user %>
       <div class="d-inline-flex">
