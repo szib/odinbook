@@ -20,6 +20,7 @@ end
 start_time = Time.now
 puts " Seeding starts at #{start_time} ".center(79,'#')
 
+# USERS
 add_user(
   email: "miyamoto@manga-world.jp",
   password: 'foobar',
@@ -43,10 +44,6 @@ add_user(
   last_name: 'Murakami',
   location: 'Japan'
 )
-Friendship.create(user: User.first, friend: User.find(2))
-Friendship.create(user: User.first, friend: User.find(3))
-
-FriendRequest.create(user: User.second, friend: User.third)
 
 30.times do
   add_user(
@@ -58,15 +55,35 @@ FriendRequest.create(user: User.second, friend: User.third)
   )
 end
 
+# USER RELATIONS
+Friendship.create(user: User.first, friend: User.find(2))
+Friendship.create(user: User.first, friend: User.find(3))
+FriendRequest.create(user: User.second, friend: User.third)
 FriendRequest.create(user: User.find(5), friend: User.first)
 FriendRequest.create(user: User.find(6), friend: User.first)
 FriendRequest.create(user: User.find(7), friend: User.first)
 FriendRequest.create(user: User.first, friend: User.find(8))
 
+# POSTS
 (1..30).each do |n|
   content = Faker::Lorem.paragraph(12)
   Post.create(author: User.find(n), content: "Post #{n}#{n.ordinal} ==> #{content}")
 end
+
+# POST LIKES
+Like.create(likeable: Post.first, user: User.first)
+Like.create(likeable: Post.first, user: User.second)
+Like.create(likeable: Post.first, user: User.third)
+
+# COMMENTS
+Comment.create(post: Post.first, author: User.second, content: Faker::Lorem.paragraph(4))
+Comment.create(post: Post.first, author: User.third, content: Faker::Lorem.paragraph(4))
+Comment.create(post: Post.second, author: User.second, content: Faker::Lorem.paragraph(4))
+
+# COMMENT LIKES
+Like.create(likeable: Comment.first, user: User.first)
+Like.create(likeable: Comment.second, user: User.first)
+Like.create(likeable: Comment.first, user: User.third)
 
 finish_time = Time.now
 duration = Time.at(finish_time-start_time).utc.strftime("%M:%S.%L")
