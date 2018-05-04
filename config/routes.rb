@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :posts do
     post 'like', to: 'likes#create'
     delete 'like', to: 'likes#destroy'
+    resources :comments, only: [:new, :create, :destroy]
   end
 
   get 'static_pages/home'
