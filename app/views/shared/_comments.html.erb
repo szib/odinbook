@@ -1,0 +1,19 @@
+<% comments.each do |comment| %>
+  <div class="d-flex mt-2 ml-5 border-left border-dark">
+    <div class="p-2">
+      <%= comment.content %>
+    </div>
+  </div>
+
+  <div class="d-flex flex-row justify-content-end">
+    <div class="d-flex font-weight-bold py-2 rounded-left">
+      <div class="pl-3 mr-4">
+        <%= comment.author.profile.full_name %>
+      </div>
+      <div class="pr-3">
+        <%= comment.created_at %>
+      </div>
+    </div>
+  </div>
+
+<% end %>
