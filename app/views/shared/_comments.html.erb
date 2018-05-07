@@ -11,7 +11,7 @@
         <%= comment.author.profile.full_name %>
       </div>
       <div class="pr-3">
-        <%= comment.created_at %>
+        <%= "#{time_ago_in_words(comment.created_at)} ago" %>
       </div>
     </div>
   </div>

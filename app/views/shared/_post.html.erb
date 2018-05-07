@@ -8,7 +8,7 @@
         <%= like_sentence(post.likes.count) %>
       </div>
     <div class="p-1 mx-3">
-      <%= post.created_at %>
+      <%= "#{time_ago_in_words(post.created_at)} ago" %>
     </div>
   </div>
 
