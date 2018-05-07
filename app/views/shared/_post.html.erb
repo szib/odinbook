@@ -4,11 +4,9 @@
     <div class="p-1 mx-3">
       <%= post.author.profile.full_name %>
     </div>
-    <% if post.likes.exists? %>
-      <div class="p-0 px-1 pt-1 ml-5">
-        <%= "#{pluralize(post.likes.count, 'person')} likes it." %>
+      <div class="p-0 px-1 pt-1 ml-auto">
+        <%= like_sentence(post.likes.count) %>
       </div>
-    <% end %>
     <div class="p-1 mx-3">
       <%= post.created_at %>
     </div>
