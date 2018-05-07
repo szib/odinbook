@@ -1,10 +1,10 @@
-<%= form_with(model: comment, local: true) do |form| %>
-  <% if comment.errors.any? %>
+<%= form_with scope: :comment, url: post_comments_path(post), local: true do |form| %>
+  <% if @comment.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
 
       <ul>
-      <% comment.errors.full_messages.each do |message| %>
+      <% @comment.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -12,6 +12,8 @@
   <% end %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.label :content, 'New comment', class: 'form_control' %>
+    <%= form.text_area :content, class: 'form-control', size: '30x4' %>
+    <%= form.submit 'Send comment', class: 'mt-2 btn btn-primary' %>
   </div>
 <% end %>
