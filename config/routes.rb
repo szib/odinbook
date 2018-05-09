@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   resources :friend_requests, only: [ :update, :destroy]
   post 'friend_requests/:id', to: 'friend_requests#create'
 
+  resources :comments, only: [ :create ] do
+    post 'like', to: 'likes#create'
+    delete 'like', to: 'likes#destroy'
+  end
+
   resources :posts do
     post 'like', to: 'likes#create'
     delete 'like', to: 'likes#destroy'
