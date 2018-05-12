@@ -14,10 +14,8 @@ RSpec.describe PostsController, type: :controller do
     end
 
     context 'when not authenticated' do
-      describe '#index' do
-        before { get :index }
-        it_behaves_like 'a not authenticated request'
-      end
+      before { get :index }
+      it_behaves_like 'a not authenticated request'
     end
   end
 
@@ -29,10 +27,8 @@ RSpec.describe PostsController, type: :controller do
     end
 
     context 'when not authenticated' do
-      describe '#new' do
-        before { get :new }
-        it_behaves_like 'a not authenticated request'
-      end
+      before { get :new }
+      it_behaves_like 'a not authenticated request'
     end
   end
 
@@ -46,11 +42,19 @@ RSpec.describe PostsController, type: :controller do
       it_behaves_like 'a redirected request'
     end
 
-    context 'when not authenticated' do
-      describe '#create' do
-        before { post :create, params: { post: attribs } }
-        it_behaves_like 'a not authenticated request'
+    context 'when save failed' do
+      include_context 'has an authenticated user'
+      let(:attribs) { attributes_for(:post, content: '') }
+      before { post :create, params: { post: attribs } }
+      it_behaves_like 'a successful request'
+      it 'renders new template' do
+        expect(response).to render_template(:new)
       end
+    end
+
+    context 'when not authenticated' do
+      before { post :create, params: { post: attribs } }
+      it_behaves_like 'a not authenticated request'
     end
   end
 
@@ -62,10 +66,8 @@ RSpec.describe PostsController, type: :controller do
     end
 
     context 'when not authenticated' do
-      describe '#show' do
-        before { get :show, params: { id: first_post.id } }
-        it_behaves_like 'a not authenticated request'
-      end
+      before { get :show, params: { id: first_post.id } }
+      it_behaves_like 'a not authenticated request'
     end
   end
 
@@ -78,11 +80,17 @@ RSpec.describe PostsController, type: :controller do
       it_behaves_like 'a redirected request'
     end
 
-    context 'when not authenticated' do
-      describe '#destroy' do
-        before { delete :destroy, params: { id: first_post.id } }
-        it_behaves_like 'a not authenticated request'
+    context 'when not authorized' do
+      before do
+        sign_in first_post.author
+        delete :destroy, params: { id: second_post.id }
       end
+      it_behaves_like 'a redirected request'
+    end
+
+    context 'when not authenticated' do
+      before { delete :destroy, params: { id: first_post.id } }
+      it_behaves_like 'a not authenticated request'
     end
   end
 
@@ -96,14 +104,19 @@ RSpec.describe PostsController, type: :controller do
       it_behaves_like 'a successful request'
     end
 
-    context 'when not authenticated' do
-      describe '#edit' do
-        before { get :edit, params: { id: first_post.id } }
-        it_behaves_like 'a not authenticated request'
+    context 'when not authorized' do
+      before do
+        sign_in first_post.author
+        get :edit, params: { id: second_post.id }
       end
+      it_behaves_like 'a redirected request'
+    end
+
+    context 'when not authenticated' do
+      before { get :edit, params: { id: first_post.id } }
+      it_behaves_like 'a not authenticated request'
     end
   end
-
 
   describe '#update' do
     let(:attribs) { attributes_for(:post) }
@@ -115,11 +128,29 @@ RSpec.describe PostsController, type: :controller do
       it_behaves_like 'a redirected request'
     end
 
-    context 'when not authenticated' do
-      describe '#update' do
-        before { put :update, params: { id: first_post.id, post: attribs } }
-        it_behaves_like 'a not authenticated request'
+    context 'when save failed' do
+      let(:attribs) { attributes_for(:post, content: '') }
+      before do
+        sign_in first_post.author
+        patch :update, params: { id: first_post.id, post: attribs }
       end
+      it_behaves_like 'a successful request'
+      it 'renders edit template' do
+        expect(response).to render_template(:edit)
+      end
+    end
+
+    context 'when not authorized' do
+      before do
+        sign_in first_post.author
+        patch :update, params: { id: second_post.id, post: attribs }
+      end
+      it_behaves_like 'a redirected request'
+    end
+
+    context 'when not authenticated' do
+      before { put :update, params: { id: first_post.id, post: attribs } }
+      it_behaves_like 'a not authenticated request'
     end
   end
 

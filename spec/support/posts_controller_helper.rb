@@ -10,4 +10,5 @@ end
 RSpec.shared_context 'has a few posts' do
   let(:posts) { create_list(:post, 10) }
   let(:first_post) { posts.first }
+  let(:second_post) { posts.second }
 end
