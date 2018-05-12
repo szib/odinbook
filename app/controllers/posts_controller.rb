@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   # GET /posts
   def index
     @posts = current_user.timeline
+    @comment = Comment.new
   end
 
   # GET /posts/1
