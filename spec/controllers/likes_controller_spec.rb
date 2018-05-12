@@ -28,57 +28,77 @@ RSpec.describe LikesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Like. As you add validations to Like, be sure to
   # adjust the attributes here as well.
-  let(:a_post) { create(:post) }
-  let(:user) { create(:user) }
-  let!(:like) { create(:like, likeable: a_post, user: user) }
-  let(:valid_attributes) {
-    { post_id: a_post.id }
-  }
-
-
-  let(:invalid_attributes) {
-    { post_id: 'no_id' }
-  }
   before { sign_in user }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # LikesController. Be sure to keep this updated too.
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Like" do
-        expect {
+  shared_examples 'a likeable object' do
+    describe "POST #create" do
+      context "with valid params" do
+        it "creates a new Like" do
+          expect {
+            post :create, params: valid_attributes
+          }.to change(Like, :count).by(1)
+        end
+
+        it "redirects back" do
           post :create, params: valid_attributes
-        }.to change(Like, :count).by(1)
+          expect(response).to redirect_to(root_path)
+        end
       end
 
-      it "redirects back" do
-        post :create, params: valid_attributes
+      context "with invalid params" do
+        it "returns a success response (i.e. to display the 'new' template)" do
+          expect{
+            post :create, params: invalid_attributes
+          }.to raise_error ActiveRecord::RecordNotFound
+        end
+      end
+    end
+
+    describe "DELETE #destroy" do
+      it "destroys the requested like" do
+        expect {
+          delete :destroy, params: valid_attributes
+        }.to change(Like, :count).by(-1)
+      end
+
+      it "redirects to the likes list" do
+        delete :destroy, params: valid_attributes
         expect(response).to redirect_to(root_path)
       end
     end
+  end
 
-    context "with invalid params" do
-      it "returns a success response (i.e. to display the 'new' template)" do
-        expect{
-          post :create, params: invalid_attributes
-        }.to raise_error ActiveRecord::RecordNotFound
-      end
+  describe 'a post' do
+    let(:a_post) { create(:post) }
+    let(:user) { create(:user) }
+    let!(:like) { create(:like, likeable: a_post, user: user) }
+    it_behaves_like 'a likeable object' do
+      let(:valid_attributes) {
+        { post_id: a_post.id }
+      }
+      let(:invalid_attributes) {
+        { post_id: 'no_id' }
+      }
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested like" do
-      expect {
-        delete :destroy, params: valid_attributes
-      }.to change(Like, :count).by(-1)
-    end
-
-    it "redirects to the likes list" do
-      delete :destroy, params: valid_attributes
-      expect(response).to redirect_to(root_path)
+  describe 'a comment' do
+    let(:a_comment) { create(:comment) }
+    let(:user) { create(:user) }
+    let!(:like) { create(:like, likeable: a_comment, user: user) }
+    it_behaves_like 'a likeable object' do
+      let(:valid_attributes) {
+        { comment_id: a_comment.id }
+      }
+      let(:invalid_attributes) {
+        { comment_id: 'no_id' }
+      }
     end
   end
+
 
 end
