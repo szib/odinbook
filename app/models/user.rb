@@ -28,7 +28,7 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :profile
 
-  scope :possible_friends_for, -> (id) { where('id <> ?', id) }
+  scope :possible_friends_of, -> (user) { where.not(id: user.friends_ids.to_a) }
 
   include Gravtastic
   gravtastic size: 100, default: 'mm'
@@ -37,12 +37,12 @@ class User < ApplicationRecord
     friends.include? frd
   end
 
-  def timeline_user_ids
+  def friends_ids
     friends.map { |f| f.id } << id
   end
 
   def timeline
-    Post.where("author_id in (?)", timeline_user_ids)
+    Post.where("author_id in (?)", friends_ids)
   end
 
   def not_friend_of?(frd)
