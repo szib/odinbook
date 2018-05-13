@@ -30,6 +30,9 @@ class User < ApplicationRecord
 
   scope :possible_friends_for, -> (id) { where('id <> ?', id) }
 
+  include Gravtastic
+  gravtastic size: 100, default: 'mm'
+
   def friend_of?(frd)
     friends.include? frd
   end
