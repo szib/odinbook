@@ -1,4 +1,4 @@
-<div class="d-flex flex-column m-3 justify-content-center">
+<div class="d-flex bg-light border rounded flex-column m-3 justify-content-center">
   <div class="m-2 text-center">
     <%= image_tag @user.gravatar_url, class: 'p-3 border rounded' %>
   </div>
@@ -14,3 +14,7 @@
     <%= @user.profile.location %>
   </div>
 </div>
+
+<% @user.posts.each do |post| %>
+  <%= render 'shared/post', post: post %>
+<% end %>
