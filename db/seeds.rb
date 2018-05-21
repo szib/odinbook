@@ -45,7 +45,7 @@ add_user(
   location: 'Japan'
 )
 
-30.times do
+12.times do
   add_user(
     email: Faker::Internet.email,
     password: 'foobar',
@@ -65,7 +65,7 @@ FriendRequest.create(user: User.find(7), friend: User.first)
 FriendRequest.create(user: User.first, friend: User.find(8))
 
 # POSTS
-(1..30).each do |n|
+(1..12).each do |n|
   content = Faker::Lorem.paragraph(12)
   Post.create(author: User.find(n), content: "Post #{n}#{n.ordinal} ==> #{content}")
 end
