@@ -1,7 +1,3 @@
-<div class="d-flex justify-content-center">
-  <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
-</div>
-
 <% @posts.newest_first.each do |post| %>
   <%= render 'shared/post', post: post %>
 <% end %>
