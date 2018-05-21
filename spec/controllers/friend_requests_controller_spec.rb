@@ -16,6 +16,11 @@ RSpec.describe FriendRequestsController, type: :controller do
       it_behaves_like 'a not authenticated request'
     end
 
+    describe '#index' do
+      before { get :index }
+      it_behaves_like 'a not authenticated request'
+    end
+
     describe '#destroy' do
       before { delete :destroy, params: { id: user.id } }
       it_behaves_like 'a not authenticated request'
@@ -34,6 +39,11 @@ RSpec.describe FriendRequestsController, type: :controller do
       describe '#update' do
         before { get :update, params: { id: friend.id } }
         it_behaves_like 'a redirected request'
+      end
+
+      describe '#index' do
+        before { get :index }
+        it_behaves_like 'a successful request'
       end
 
       describe '#destroy' do

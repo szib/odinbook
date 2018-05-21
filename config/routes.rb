@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
   get 'friends', to: 'friends#index'
 
-  resources :friend_requests, only: [ :update, :destroy]
+  resources :friend_requests, only: [ :update, :destroy, :index ]
   post 'friend_requests/:id', to: 'friend_requests#create'
 
   resources :comments, only: [ :create ] do

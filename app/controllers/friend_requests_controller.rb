@@ -2,7 +2,7 @@ class FriendRequestsController < ApplicationController
   include FriendRequestsHelper
 
   before_action :authenticate_user!
-  before_action { find_friend(friend_request_params) }
+  before_action :find_friend, except: [ :index ]
 
   # Send friend request
   def create
@@ -27,14 +27,19 @@ class FriendRequestsController < ApplicationController
     redirect_to users_path
   end
 
+  def index
+    @pending_friends = current_user.pending_friends
+  end
+
   private
 
     def friend_request_params
       params.permit(:id)
     end
 
-    def find_friend(par)
-      @friend = User.find(par[:id])
+    def find_friend
+      # @friend = User.find(par[:id])
+      @friend = User.find(friend_request_params[:id])
     rescue ActiveRecord::RecordNotFound
       redirect_to users_path
     end
