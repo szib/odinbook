@@ -64,4 +64,8 @@ class User < ApplicationRecord
   def has_sent_friend_request_to?(frd)
     requested_friends.include?(frd)
   end
+
+  def pending_friends
+    (requested_friends + requesting_friends).uniq
+  end
 end
