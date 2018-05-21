@@ -114,6 +114,7 @@ GEM
       ruby-progressbar (~> 1.4)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    gravtastic (3.2.6)
     guard (2.14.2)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -332,6 +333,7 @@ DEPENDENCIES
   faker
   figaro
   fuubar
+  gravtastic
   guard-rspec
   jquery-rails
   listen (>= 3.0.5, < 3.2)

@@ -14,7 +14,7 @@
 
       <% if user_signed_in? %>
         <li class="nav-item p-2 m-1">
-          <%= link_to "[#{current_user.profile.first_name}]", edit_user_registration_path, class: ["navbar-link", "text-light"] %>
+          <%= link_to "[#{current_user.profile.first_name}]", user_path(current_user), class: ["navbar-link", "text-light"] %>
         </li>
       <% end %>
       <li class="nav-item p-2 m-1">

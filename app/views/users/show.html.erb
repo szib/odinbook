@@ -1,6 +1,16 @@
-<h1><%= @user.profile.full_name %></h1>
-
-<ul>
-  <li><%= @user.email %></li>
-  <li><%= @user.profile.location %></li>
-</ul>
+<div class="d-flex flex-column m-3 justify-content-center">
+  <div class="m-2 text-center">
+    <%= image_tag @user.gravatar_url, class: 'p-3 border rounded' %>
+  </div>
+  <div class="text-center m-2 font-weight-bold">
+    <h3>
+      <%= @user.profile.full_name %>
+    </h3>
+  </div>
+  <div class="text-center m-2">
+    <%= @user.email %>
+  </div>
+  <div class="text-center m-2">
+    <%= @user.profile.location %>
+  </div>
+</div>

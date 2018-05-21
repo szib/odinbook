@@ -35,12 +35,12 @@ RSpec.describe User, type: :model do
     expect(dup_user).to_not be_valid
   end
 
-  it 'should return timeline_user_ids' do
+  it 'should return friends_ids' do
     create(:friendship, user: user, friend: friend)
     list = create_list(:friendship, 5, user: user)
-    expect(user.timeline_user_ids).to include user.id
-    expect(user.timeline_user_ids).to include friend.id
-    expect(user.timeline_user_ids.length).to be 7
+    expect(user.friends_ids).to include user.id
+    expect(user.friends_ids).to include friend.id
+    expect(user.friends_ids.length).to be 7
   end
 
   it 'should return timeline posts' do
@@ -118,5 +118,20 @@ RSpec.describe User, type: :model do
     it 'has_sent_friend_request_to? should return false' do
       expect(user.has_sent_friend_request_to?(friend)).to be false
     end
+  end
+
+  context 'listing possible friends' do
+    let (:users) { create_list(:user, 3) }
+    it 'does not include the current user' do
+      expect(User.possible_friends_of(users[0])).to_not include(users[0])
+    end
+    it 'does not include friends' do
+      Friendship.create(user: users[0], friend: users[1])
+      expect(User.possible_friends_of(users[0])).to_not include(users[1])
+    end
+    it 'does include not friends' do
+      expect(User.possible_friends_of(users[0])).to include(users[2])
+    end
+
   end
 end

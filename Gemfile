@@ -79,3 +79,5 @@ gem 'will_paginate'
 gem 'figaro'
 gem 'devise'
 gem 'omniauth-facebook'
+
+gem 'gravtastic'
