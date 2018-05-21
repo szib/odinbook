@@ -2,6 +2,6 @@
   <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
 </div>
 
-<% @posts.each do |post| %>
+<% @posts.newest_first.each do |post| %>
   <%= render 'shared/post', post: post %>
 <% end %>
