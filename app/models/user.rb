@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  devise :omniauthable, omniauth_providers: %i[facebook]
+
   has_one :profile, dependent: :destroy, autosave: true
 
   has_many :friendships, dependent: :destroy
@@ -67,5 +69,18 @@ class User < ApplicationRecord
 
   def pending_friends
     (requested_friends + requesting_friends).uniq
+  end
+
+  def self.from_onmiauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      names = auth.info.name.split(' ')
+      user.password = Devise.friendly_token[0,20]
+      user.profile = Profile.new
+      user.profile.first_name = names[0]
+      user.profile.last_name = names[1]
+      user.profile.location = ''
+      puts auth
+    end
   end
 end
