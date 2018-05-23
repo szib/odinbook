@@ -55,6 +55,7 @@ group :development do
   gem 'awesome_rails_console'
   gem 'guard-rspec', require: false
   gem 'rspec-nc', require: false
+  gem 'letter_opener'
 end
 
 group :test do
