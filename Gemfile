@@ -82,3 +82,4 @@ gem 'devise'
 gem 'omniauth-facebook'
 
 gem 'gravtastic'
+gem 'sendgrid-ruby'
