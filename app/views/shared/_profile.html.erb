@@ -1,6 +1,10 @@
 <div class="d-flex flex-row m-2 justify-content-center">
   <div class="m-1 text-center">
-    <%= image_tag user.gravatar_url, class: 'p-3 border rounded' %>
+    <% if user.profile.avatar.attached? %>
+      <%= image_tag user.profile.avatar, class: 'p-3 border rounded' %>
+    <% else %>
+      <%= image_tag user.gravatar_url, class: 'p-3 border rounded' %>
+    <% end %>
   </div>
   <div class="d-flex mt-3 ml-4 flex-column">
     <div class="m-1 font-weight-bold">
