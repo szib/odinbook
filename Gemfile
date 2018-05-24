@@ -83,3 +83,4 @@ gem 'omniauth-facebook'
 
 gem 'gravtastic'
 gem 'sendgrid-ruby'
+gem 'aws-sdk-s3', require: false
