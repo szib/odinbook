@@ -46,6 +46,15 @@
       <%= profile_fields.label :location %><br />
       <%= profile_fields.text_field :location, autofocus: true, autocomplete: "off" %>
     </div>
+
+    <% if resource.profile.avatar.attached? %>
+      <%= image_tag @user.profile.avatar.variant(resize: "100x100"), class: 'p-3 border rounded' %>
+    <% end %>
+
+    <div class="field">
+      <%= profile_fields.label :avatar %><br />
+      <%= profile_fields.file_field :avatar, autofocus: true, autocomplete: "off" %>
+    </div>
   <% end %>
 
 

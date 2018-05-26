@@ -36,6 +36,11 @@
       <%= profile_fields.label :location %><br />
       <%= profile_fields.text_field :location, autofocus: true, autocomplete: "off" %>
     </div>
+
+    <div class="field">
+      <%= profile_fields.label :avatar %><br />
+      <%= profile_fields.file_field :avatar, autofocus: true, autocomplete: "off" %>
+    </div>
   <% end %>
 
   <div class="actions">

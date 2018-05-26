@@ -14,6 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
+    current_user.profile.avatar.attach(avatar_param) if avatar_param.present?
     UserMailer.with(user: current_user).welcome_mail.deliver_later
   end
 
@@ -66,7 +67,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up) { |u|
       u.permit(:email, :password, :password_confirmation,
-               profile_attributes: [ :first_name, :last_name, :location ] )
+               profile_attributes: [ :first_name, :last_name, :location, :avatar ] )
     }
   end
 
@@ -74,9 +75,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update) { |u|
       u.permit(:email, :password, :password_confirmation, :current_password,
-        profile_attributes: [ :first_name, :last_name, :location, :id ] )
+        profile_attributes: [ :first_name, :last_name, :avatar, :location, :id ] )
       }
-    end
+  end
+
+  def avatar_param
+    params.dig(:profile_attributes, :avatar)
+  end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
