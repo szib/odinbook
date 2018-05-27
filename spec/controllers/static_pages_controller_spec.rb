@@ -10,11 +10,6 @@ RSpec.describe StaticPagesController, type: :controller do
       before { get :home }
       it_behaves_like 'a successful request'
     end
-
-    describe '#help' do
-      before { get :help }
-      it_behaves_like 'a successful request'
-    end
   end
 
   context 'with successfully authenticated user' do
@@ -24,12 +19,5 @@ RSpec.describe StaticPagesController, type: :controller do
       before { get :home }
       it_behaves_like 'a redirected request'
     end
-
-    describe '#help' do
-      before { get :help }
-      it_behaves_like 'a successful request'
-    end
   end
-
-
 end
