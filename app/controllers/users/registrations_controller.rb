@@ -40,7 +40,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if successfully_updated
       set_flash_message :notice, :updated
       bypass_sign_in @user
-      redirect_to static_pages_home_path
+      redirect_to current_user
     else
       render 'edit'
     end
