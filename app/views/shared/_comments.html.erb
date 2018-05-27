@@ -1,35 +1,33 @@
 <% comments.oldest_first.each do |comment| %>
 
-  <div class="d-flex flex-column mt-2 ml-5 border-left border-dark">
-    <div class="d-flex mt-2 ml-5">
-      <div class="p-2">
-        <%= comment.content %>
-      </div>
-    </div>
-    <div class="d-flex mt-2 ml-5">
-      <div class="p-2">
-        <%= like_sentence(comment.likes.count) %>
-      </div>
-    </div>
-  </div>
+  <div class="d-flex flex-column mt-2 ml-5 border border-primary rounded-left border-right-0">
 
-  <div class="d-flex flex-row justify-content-end">
-    <div class="p-0 px-1">
-      <% if comment.likes.pluck(:user_id).include?(current_user.id) %>
-        <%= link_to 'Unlike', comment_like_path(comment.id), method: :delete, class: 'btn btn-sm btn-primary' %>
-      <% else %>
-        <%= link_to 'Like', comment_like_path(comment.id), method: :post, class: 'btn btn-sm btn-primary' %>
-      <% end %>
-    </div>
-    <div class="d-flex font-weight-bold py-2 rounded-left">
-      <div class="pl-3 mr-4">
+    <div class="d-flex p-0 flex-row bg-primary rounded-top text-light justify-content-between">
+      <div class="p-0 mx-3">
         <%= comment.author.profile.full_name %>
       </div>
-      <div class="pr-3">
+      <div class="p-0 mx-3">
         <%= "#{time_ago_in_words(comment.created_at)} ago" %>
       </div>
     </div>
-  </div>
 
+    <div class="d-flex px-3 mt-2 text-justify">
+      <%= comment.content %>
+    </div>
+
+    <!-- <div class="d-flex flex-row justify-content-end"> -->
+    <div class="d-flex p-2 border-top border-primary flex-row justify-content-between">
+      <div class="p-0 px-1 pt-1">
+        <%= like_sentence(comment.likes.count, 'comment') %>
+      </div>
+      <div class="p-0 px-1">
+        <% if comment.likes.pluck(:user_id).include?(current_user.id) %>
+        <%= link_to 'Unlike', comment_like_path(comment.id), method: :delete, class: 'btn btn-sm btn-primary' %>
+        <% else %>
+        <%= link_to 'Like', comment_like_path(comment.id), method: :post, class: 'btn btn-sm btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
 <% end %>

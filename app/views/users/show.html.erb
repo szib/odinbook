@@ -1,9 +1,9 @@
-<div class="d-flex bg-light border rounded flex-column m-3 justify-content-center">
+<div class="d-flex bg-gray-300 border border-dark rounded flex-column m-3 justify-content-center">
   <div class="m-2 text-center">
     <% if @user.profile.avatar.attached? %>
-      <%= image_tag @user.profile.avatar.variant(resize: "100x100"), class: 'p-3 border rounded' %>
+      <%= image_tag @user.profile.avatar.variant(resize: "100x100"), class: 'p-3 border border-dark rounded' %>
     <% else %>
-      <%= image_tag @user.gravatar_url, class: 'p-3 border rounded' %>
+      <%= image_tag @user.gravatar_url, class: 'p-3 border border-dark rounded' %>
     <% end %>
   </div>
   <div class="text-center m-2 font-weight-bold">

@@ -1,2 +1,17 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<div class="d-flex justify-content-center">
+  <div class="display-2">
+    Odinbook
+  </div>
+</div>
+
+<div class="p-2 text-center">
+  <h1>
+    Connect with friends from all around the world.
+  </h1>
+</div>
+
+<div class="p-3 text-center">
+  <a class='btn btn-outline-primary btn-lg px-5' href="<%= new_user_session_path %>">Sign in</a>
+  <a class='btn btn-outline-primary btn-lg px-5' href="<%= user_facebook_omniauth_authorize_path %>">Sign in with Facebook</a>
+  <a class='btn btn-outline-primary btn-lg px-5' href="<%= new_user_registration_path %>">Sign up</a>
+</div>
