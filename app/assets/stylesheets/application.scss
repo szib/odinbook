@@ -13,11 +13,17 @@
  *= require_tree .
  *= require_self
  */
+$theme-colors: (
+ "primary": #424CFF,
+ "secondary": #42AAFF
+);
+
 @import "bootstrap";
 
 body {
   margin-top: 56px;
   margin-bottom: 20px;
+  background-color: gray('200')
 }
 
 .custom-toggler.navbar-toggler {
@@ -29,5 +35,17 @@ body {
 }
 
 .nav-link:hover {
-  background-color: #085fad;
+  background-color: theme-color("secondary");
+}
+
+.bg-gray-300 {
+  background-color: gray('300')
+}
+
+.form-control {
+  background-color: gray('200')
+}
+
+.form-control:focus {
+  background-color: gray('100')
 }

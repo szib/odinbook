@@ -1,8 +1,8 @@
 <% comments.oldest_first.each do |comment| %>
 
-  <div class="d-flex flex-column mt-2 ml-5 border border-secondary rounded-left border-right-0">
+  <div class="d-flex flex-column mt-2 ml-5 border border-primary rounded-left border-right-0">
 
-    <div class="d-flex p-0 flex-row bg-secondary rounded-top text-light justify-content-between">
+    <div class="d-flex p-0 flex-row bg-primary rounded-top text-light justify-content-between">
       <div class="p-0 mx-3">
         <%= comment.author.profile.full_name %>
       </div>
@@ -15,8 +15,9 @@
       <%= comment.content %>
     </div>
 
-    <div class="d-flex flex-row justify-content-end">
-      <div class="p-2">
+    <!-- <div class="d-flex flex-row justify-content-end"> -->
+    <div class="d-flex p-2 border-top border-primary flex-row justify-content-between">
+      <div class="p-0 px-1 pt-1">
         <%= like_sentence(comment.likes.count, 'comment') %>
       </div>
       <div class="p-0 px-1">
