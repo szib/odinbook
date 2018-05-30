@@ -43,6 +43,11 @@ class User < ApplicationRecord
     friends.map { |f| f.id } << id
   end
 
+  def pending_friends
+    ids = requested_friends.pluck(:friend_id) + requesting_friends.pluck(:user_id)
+    User.where('id in (?)', ids)
+  end
+
   def timeline
     Post.where("author_id in (?)", friends_ids)
   end
@@ -65,10 +70,6 @@ class User < ApplicationRecord
 
   def has_sent_friend_request_to?(frd)
     requested_friends.include?(frd)
-  end
-
-  def pending_friends
-    (requested_friends + requesting_friends).uniq
   end
 
   def self.from_onmiauth(auth)

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.possible_friends_of(current_user)
+    @users = User.possible_friends_of(current_user).paginate(page: params[:page])
   end
 
   def show

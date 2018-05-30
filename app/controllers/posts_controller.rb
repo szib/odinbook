@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = current_user.timeline
+    @posts = current_user.timeline.paginate(page: params[:page])
     @comment = Comment.new
   end
 

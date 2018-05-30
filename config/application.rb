@@ -18,3 +18,5 @@ module Odinbook
     config.generators.test_framework :rspec
   end
 end
+
+WillPaginate.per_page = 5

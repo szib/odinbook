@@ -28,7 +28,8 @@ class FriendRequestsController < ApplicationController
   end
 
   def index
-    @pending_friends = current_user.pending_friends
+    @pending_friends = current_user.pending_friends.paginate(page: params[:page])
+    # debugger
   end
 
   private
@@ -38,7 +39,6 @@ class FriendRequestsController < ApplicationController
     end
 
     def find_friend
-      # @friend = User.find(par[:id])
       @friend = User.find(friend_request_params[:id])
     rescue ActiveRecord::RecordNotFound
       redirect_to users_path
