@@ -13,6 +13,9 @@
 
   <div class="actions d-flex flex-column justify-content-center">
     <%= form.text_area :content, class: 'my-2 form-control', size: '60x12' %>
-    <%= form.submit "Send", class: 'btn btn-primary px-5' %>
+    <%= button_tag(type: 'submit', class: "mt-2 btn btn-primary px-5") do %>
+      Send <%= mdi_tag('send 16px') %>
+    <% end %>
+
   </div>
 <% end %>

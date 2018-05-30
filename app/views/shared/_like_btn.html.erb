@@ -1,0 +1,5 @@
+<% if pressed %>
+  <%= link_to mdi_tag('thumb-up-outline 16px', class: 'text-light'), path, method: :delete, class: 'btn btn-info p-1 px-3' %>
+<% else %>
+  <%= link_to mdi_tag('thumb-up-outline 16px', class: 'text-light'), path, method: :post, class: 'btn btn-primary p-1 px-3' %>
+<% end %>

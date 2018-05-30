@@ -72,7 +72,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'bootstrap'
 gem 'jquery-rails'
-gem 'material_icons'
+gem 'material_design_icons'
 gem 'time_difference'
 gem 'will_paginate'
 
