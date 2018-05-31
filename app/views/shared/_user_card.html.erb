@@ -1,4 +1,29 @@
-<div class="profile d-flex m-2 flex-column bg-gray-300 border border-dark rounded">
-  <%= render 'shared/profile', user: user %>
-  <%= render 'shared/friend_request_control', friend: user %>
+<div class="container border bg-light rounded mb-1">
+  <div class="row">
+    <div class="col-2 my-auto p-3">
+      <% if user.profile.avatar.attached? %>
+        <%= image_tag user.profile.avatar.variant(resize: "100x100"), class: 'rounded border border-dark' %>
+      <% else %>
+        <%= image_tag 'https://picsum.photos/100', class: 'rounded border border-dark' %>
+      <% end %>
+    </div>
+
+    <div class="col my-auto">
+      <div class="m-1 font-weight-bold">
+        <%= user.profile.full_name %>
+      </div>
+      <div class="m-1">
+        <%= user.email %>
+      </div>
+      <div class="m-1">
+        <%= user.profile.location %>
+      </div>
+    </div>
+
+    <div class="col-3 my-auto">
+      <% unless user == current_user %>
+        <%= render 'shared/friend_request_control', friend: user %>
+      <% end %>
+    </div>
+  </div>
 </div>

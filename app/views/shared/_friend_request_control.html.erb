@@ -1,24 +1,22 @@
 <% unless current_user.friend_of?(friend) %>
-  <div class="m-1 px-5 text-center">
 
   <% unless current_user.has_pending_friend_request?(friend) %>
     <%= form_tag friend_request_path(friend) do %>
-      <%= submit_tag 'Send friend request', class: "btn btn-primary btn-block p-1 my-1" %>
+      <%= submit_tag 'Send request', class: "btn btn-primary btn-block py-2 my-1" %>
     <% end %>
   <% else %>
     <% if current_user.has_sent_friend_request_to?(friend) %>
       <%= form_tag friend_request_path(friend), method: :delete do %>
-        <%= submit_tag 'Delete request', class: "btn btn-primary btn-block p-1 my-1" %>
+        <%= submit_tag 'Delete request', class: "btn btn-primary btn-block py-2 my-1" %>
       <% end %>
     <% else %>
       <%= form_tag friend_request_path(friend), method: :put do %>
-        <%= submit_tag 'Accept request', class: "btn btn-primary btn-block p-1 my-1" %>
+        <%= submit_tag 'Accept request', class: "btn btn-primary btn-block py-2 my-1" %>
       <% end %>
       <%= form_tag friend_request_path(friend), method: :delete do %>
-        <%= submit_tag 'Delete request', class: "btn btn-primary btn-block p-1 my-1" %>
+        <%= submit_tag 'Delete request', class: "btn btn-primary btn-block py-2 my-1" %>
       <% end %>
     <% end %>
   <% end %>
 
-  </div>
 <% end %>

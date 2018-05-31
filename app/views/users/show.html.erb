@@ -1,4 +1,4 @@
-<div class="d-flex bg-gray-300 border border-dark rounded flex-column m-3 justify-content-center">
+<!-- <div class="d-flex bg-gray-300 border border-dark rounded flex-column m-3 justify-content-center">
   <div class="m-2 text-center">
     <% if @user.profile.avatar.attached? %>
       <%= image_tag @user.profile.avatar.variant(resize: "100x100"), class: 'p-3 border border-dark rounded' %>
@@ -17,7 +17,9 @@
   <div class="text-center m-2">
     <%= @user.profile.location %>
   </div>
-</div>
+</div> -->
+
+<%= render 'shared/user_card', user: @user %>
 
 <% @user.posts.each do |post| %>
   <%= render 'shared/post', post: post %>
