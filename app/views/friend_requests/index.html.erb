@@ -2,8 +2,14 @@
   <h1>Pending friend requests</h1>
 </div>
 
+<div class="d-flex justify-content-center mb-1">
+  <%= will_paginate @pending_friends, class: 'digg_pagination' %>
+</div>
+
 <% @pending_friends.each do |friend| %>
   <%= render 'shared/user_card', user: friend %>
 <% end %>
 
-<%= will_paginate @pending_friends %>
+<div class="d-flex justify-content-center mt-1">
+  <%= will_paginate @pending_friends, class: 'digg_pagination' %>
+</div>

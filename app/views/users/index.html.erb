@@ -2,8 +2,14 @@
   <h1>Find friends</h1>
 </div>
 
+<div class="d-flex justify-content-center mb-1">
+  <%= will_paginate @users, class: 'digg_pagination' %>
+</div>
+
 <% @users.each do |user| %>
   <%= render 'shared/user_card', user: user %>
 <% end %>
 
-<%= will_paginate @users %>
+<div class="d-flex justify-content-center mt-1">
+  <%= will_paginate @users, class: 'digg_pagination' %>
+</div>

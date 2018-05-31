@@ -1,5 +1,11 @@
+<div class="d-flex justify-content-center mb-1">
+  <%= will_paginate @posts.newest_first, class: 'digg_pagination' %>
+</div>
+
 <% @posts.newest_first.each do |post| %>
-  <%= render 'shared/post', post: post %>
+<%= render 'shared/post', post: post %>
 <% end %>
 
-<%= will_paginate @posts.newest_first %>
+<div class="d-flex justify-content-center mt-1">
+  <%= will_paginate @posts.newest_first, class: 'digg_pagination' %>
+</div>
