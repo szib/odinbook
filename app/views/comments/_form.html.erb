@@ -11,11 +11,8 @@
     </div>
   <% end %>
 
-  <div class="form-group ml-5 mr-2 mt-3">
-    <%= form.label :content, 'New comment', class: 'form_control' %>
-    <%= form.text_area :content, class: 'form-control', size: '30x2' %>
-    <%= button_tag(type: 'submit', class: "mt-2 btn btn-primary") do %>
-      Send <%= mdi_tag('send 16px') %>
-    <% end %>
+  <div class="form-group ml-5 mr-3 mt-3 text-right">
+    <%= form.text_area :content, class: 'form-control', placeholder: 'New comment...', size: '30x2' %>
+    <%= render 'shared/send_btn' %>
   </div>
 <% end %>
