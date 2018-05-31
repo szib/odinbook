@@ -11,25 +11,24 @@ class FriendRequestsController < ApplicationController
     else
       current_user.requested_friends << @friend unless @friend.nil?
     end
-    redirect_to users_path
+    redirect_back(fallback_location: root_path)
   end
 
   # Accept friend request
   def update
     accept_friend_request(@friend)
-    redirect_to users_path
+    redirect_back(fallback_location: root_path)
   end
 
   # Revoke/refuse friend request
   def destroy
     current_user.requested_friends.delete @friend
     current_user.requesting_friends.delete @friend
-    redirect_to users_path
+    redirect_back(fallback_location: root_path)
   end
 
   def index
     @pending_friends = current_user.pending_friends.paginate(page: params[:page])
-    # debugger
   end
 
   private
@@ -41,7 +40,7 @@ class FriendRequestsController < ApplicationController
     def find_friend
       @friend = User.find(friend_request_params[:id])
     rescue ActiveRecord::RecordNotFound
-      redirect_to users_path
+      redirect_back(fallback_location: root_path)
     end
 
 end

@@ -1,4 +1,4 @@
-<div class="bg-gray-300 d-flex flex-column m-2 pb-1 border border-primary rounded justify-content-center">
+<div class="bg-gray-300 d-flex flex-column pb-1 mb-3 border border-primary rounded justify-content-center">
 
   <div class="d-flex p-2 flex-row bg-primary rounded-top text-light justify-content-between font-weight-bold">
     <div class="p-1 mx-3">
@@ -9,36 +9,35 @@
     </div>
   </div>
 
-  <div class="d-flex px-3 mt-2 justify-content-center text-justify">
+  <div class="d-flex px-3 m-2 justify-content-center text-justify">
     <%= post.content %>
   </div>
 
   <div class="d-flex p-2 border-top border-bottom border-primary flex-row justify-content-between">
 
+    <div class="d-inline-flex">
+      <div class="p-0 px-1">
+        <% if post.likes.pluck(:user_id).include?(current_user.id) %>
+          <%= render 'shared/like_btn', path: post_like_path(post.id), pressed: true %>
+        <% else %>
+          <%= render 'shared/like_btn', path: post_like_path(post.id), pressed: false %>
+        <% end %>
+      </div>
+      <div class="p-0 px-1 pt-1 ml-auto my-auto">
+        <%= like_sentence(post.likes.count) %>
+      </div>
+    </div>
+
     <% if post.author == current_user %>
       <div class="d-inline-flex">
         <div class="p-0 px-1">
-          <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-sm btn-primary' %>
+          <%= render 'shared/edit_btn', path: edit_post_path(post) %>
         </div>
         <div class="p-0 px-1">
-          <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+          <%= render 'shared/delete_btn', path: post %>
         </div>
       </div>
     <% end %>
-
-
-    <div class="d-inline-flex">
-      <div class="p-0 px-1 pt-1 ml-auto">
-        <%= like_sentence(post.likes.count) %>
-      </div>
-      <div class="p-0 px-1">
-        <% if post.likes.pluck(:user_id).include?(current_user.id) %>
-          <%= link_to 'Unlike', post_like_path(post.id), method: :delete, class: 'btn btn-sm btn-primary' %>
-        <% else %>
-          <%= link_to 'Like', post_like_path(post.id), method: :post, class: 'btn btn-sm btn-primary' %>
-        <% end %>
-      </div>
-    </div>
 
   </div>
 

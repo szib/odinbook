@@ -13,7 +13,7 @@ Build a basic Facebook clone. Users can create a basic profile with a photo, sen
 ```
 gem 'bootstrap' # Bootstrap 4
 gem 'jquery-rails'
-gem 'material_icons'
+gem 'material_design_icons'
 gem 'time_difference'
 gem 'will_paginate'
 gem 'figaro'
