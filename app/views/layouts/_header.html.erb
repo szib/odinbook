@@ -11,6 +11,10 @@
         <%= link_to mdi_tag('home 16px') + ' Home', static_pages_home_path, class: ["nav-link"] %>
       </li>
 
+      <li class="nav-item px-1">
+        <%= link_to mdi_tag('help-box 16px') + ' Help', static_pages_help_path, class: ["nav-link"] %>
+      </li>
+
       <% if user_signed_in? %>
 
         <li class="nav-item px-1">
