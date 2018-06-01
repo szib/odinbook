@@ -66,8 +66,8 @@ FriendRequest.create(user: User.first, friend: User.find(8))
 
 # POSTS
 (1..12).each do |n|
-  content = Faker::Lorem.paragraph(12)
-  Post.create(author: User.find(n), content: "Post #{n}#{n.ordinal} ==> #{content}")
+  faked_content = Faker::Lorem.paragraph(10)
+  Post.create(author: User.find(n), content: faked_content)
 end
 
 # POST LIKES
