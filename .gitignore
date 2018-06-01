@@ -24,3 +24,13 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Notes
+/private
+
+# SimpleCov
+coverage
+.DS_Store
+
+# Ignore application configuration
+/config/application.yml

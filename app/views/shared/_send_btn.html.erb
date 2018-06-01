@@ -1,0 +1,6 @@
+<%= button_tag(type: 'submit',
+    remote: true,
+    data: { "disable-with": "Saving..." },
+    class: "mt-2 px-5 self-align-end btn btn-primary") do %>
+      Send <%= mdi_tag('send 16px') %>
+  <% end %>

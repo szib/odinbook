@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary py-0">
+  <%= link_to 'OdinBook', static_pages_home_path, class: ["navbar-brand"] %>
+  <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item px-1">
+        <%= link_to mdi_tag('home 16px') + ' Home', static_pages_home_path, class: ["nav-link"] %>
+      </li>
+
+      <li class="nav-item px-1">
+        <%= link_to mdi_tag('help-box 16px') + ' Help', static_pages_help_path, class: ["nav-link"] %>
+      </li>
+
+      <% if user_signed_in? %>
+
+        <li class="nav-item px-1">
+          <%= link_to mdi_tag('plus-box 16px') + ' New Post', new_post_path, class: ["nav-link"] %>
+        </li>
+
+        <li class="nav-item px-1">
+          <%= link_to mdi_tag('clock 16px') + ' Timeline', timeline_path, class: ["nav-link"] %>
+        </li>
+
+        <li class="nav-item px-1 dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownFriends" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= mdi_tag('account-multiple 16px') %>
+            Friends <span class="badge badge-danger"><%= current_user.number_of_friend_requests %></span>
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownFriends">
+            <%= link_to 'Friends', friends_path, class: ["dropdown-item"] %>
+            <%= link_to raw("Pending friends <span class=\"badge badge-danger\">#{current_user.number_of_friend_requests}</span>"), friend_requests_path, class: ["dropdown-item"] %>
+            <%= link_to 'Find friends', users_path, class: ["dropdown-item"] %>
+          </div>
+        </li>
+
+        <li class="nav-item px-1 dropdown mr-3">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUser" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= mdi_tag('account 16px') %>
+            [<%= current_user.profile.first_name %>]
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
+            <%= link_to mdi_tag('face-profile 16px') + ' Profile', user_path(current_user), class: ["dropdown-item"] %>
+            <%= link_to mdi_tag('square-edit-outline 16px') + ' Edit', edit_user_registration_path, class: ["dropdown-item"] %>
+            <%= link_to mdi_tag('logout 16px') + ' Logout', destroy_user_session_path, method: :delete, class: ["dropdown-item"] %>
+          </div>
+        </li>
+
+      <% else %>
+        <li class="nav-item px-1">
+          <%= link_to 'Sign up', new_user_registration_path, class: ["nav-link"] %>
+        </li>
+        <li class="nav-item px-1">
+          <%= link_to 'Sign in', new_user_session_path, class: ["nav-link"] %>
+        </li>
+        <li class="nav-item px-1">
+          <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, class: ["nav-link"] %>
+        </li>
+      <% end %>
+
+    </ul>
+
+  </div>
+</nav>
