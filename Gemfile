@@ -71,6 +71,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'bootstrap'
 gem 'jquery-rails'
+gem 'jquery-turbolinks'
 gem 'material_design_icons'
 gem 'time_difference'
 gem 'will_paginate'
@@ -84,3 +85,4 @@ gem 'sendgrid-ruby'
 gem 'aws-sdk-s3', require: false
 gem 'mini_magick'
 gem 'faker'
+gem 'clipboard-rails'

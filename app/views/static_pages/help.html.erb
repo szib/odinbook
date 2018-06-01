@@ -8,10 +8,50 @@
   <h1>
     Connect with friends from all around the world.
   </h1>
-  <h4 class="mt-4">Logins</h4>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">miyamoto@manga-world.jp / foobar</li>
-    <li class="list-group-item">tomoe@manga-world.jp / foobar</li>
-    <li class="list-group-item">gennosuke@manga-world.jp / foobar</li>
-  </ul>
+  <h4 class="mt-4">Accounts for testing</h4>
+
+  <div class="container w-50">
+
+    <div class="row">
+      <div class="col mr-0 pr-0">
+        <input id="user1" value="miyamoto@manga-world.jp" class= "form-control">
+      </div>
+      <div class="col-2 ml-0 pl-1 text-left">
+        <button class="btn clipboard-btn" data-clipboard-action="copy" data-clipboard-target="#user1">
+          <%= mdi_tag "content-copy 16px" %>
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col mr-0 pr-0">
+        <input id="user2" value="tomoe@manga-world.jp" class= "form-control">
+      </div>
+      <div class="col-2 ml-0 pl-1 text-left">
+        <button class="btn clipboard-btn" data-clipboard-action="copy" data-clipboard-target="#user2">
+          <%= mdi_tag "content-copy 16px" %>
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col mr-0 pr-0">
+        <input id="user3" value="gennosuke@manga-world.jp" class= "form-control">
+      </div>
+      <div class="col-2 ml-0 pl-1 text-left">
+        <button class="btn clipboard-btn" data-clipboard-action="copy" data-clipboard-target="#user3">
+          <%= mdi_tag "content-copy 16px" %>
+        </button>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col">
+        Password for all account: <code>foobar</code>
+      </div>
+    </div>
+
+  </div>
+
+
 </div>
